@@ -4,6 +4,7 @@
 #include <stdio.h>
 extern int NowTime[6];
 extern int year,month,day,hour,min,sec;
+int i=0;
 void TIM2_Int_Init(u16 arr,u16 psc)
 {
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
@@ -33,11 +34,12 @@ void TIM2_Int_Init(u16 arr,u16 psc)
 //定时器2中断服务程序
 void TIM2_IRQHandler(void)   //TIM2中断
 {
-	int i;
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)  //检查TIM2更新中断发生与否
 		{
 			TIM_ClearITPendingBit(TIM2, TIM_IT_Update  );  //清除TIMx更新中断标志 
-			if(++sec==60)
+			i++;
+			sec++;
+			if(sec==60)
 			{
 				sec=0;
 				min++;

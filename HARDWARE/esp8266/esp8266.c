@@ -17,9 +17,11 @@
 #include <stdlib.h>
 
 //#define ESP8266_WIFI_INFO		"AT+CWJAP=\"fuqi\",\"13755228725\"\r\n"   //wifi账号密码
-#define ESP8266_WIFI_INFO		"AT+CWJAP=\"Xiaomi_E417\",\"703703703\"\r\n"   //wifi账号密码
+//#define ESP8266_WIFI_INFO		"AT+CWJAP=\"Xiaomi_E417\",\"703703703\"\r\n"   //wifi账号密码
+#define ESP8266_WIFI_INFO1		"AT+CWJAP=\"perfect\",\"1223334444\"\r\n"   //wifi账号密码
+#define ESP8266_WIFI_INFO2		"AT+CWJAP=\"CMCC-301\",\"20020612\"\r\n"   //wifi账号密码
 #define ESP8266_WEATHER_INFO  "GET https://api.seniverse.com/v3/weather/now.json?key=SBHCbw5MrmOr6BLqN&location=jiujiang&language=zh-Hans&unit=c\n\r"
-#define ESP8266_WEATHER_INFO1  "GET https://api.seniverse.com/v3/weather/now.json?key=SBHCbw5MrmOr6BLqN&location=changsha&language=zh-Hans&unit=c\n\r"
+#define ESP8266_WEATHER_INFO1  "GET https://api.seniverse.com/v3/weather/now.json?key=SBHCbw5MrmOr6BLqN&location=wenzhou&language=zh-Hans&unit=c\n\r"
 #define ESP8266_TIME_INFO		"GET http://api.k780.com:88/?app=life.time&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json\n\r"	
 #define ESP8266_EXIT "+++"
 unsigned char esp8266_buf[512];
@@ -30,6 +32,7 @@ int week_t=0;
 int j=0;
 int NowTime[6];
 int year,month,day,hour,min,sec;
+extern uint8_t  func_index;
 //==========================================================
 //	函数名称：	ESP8266_Clear
 //
@@ -223,7 +226,7 @@ void ESP8266_Init(void)
 	ESP8266_Clear();
 }
 
-void ESP_CONNECT(void)
+void ESP_CONNECT1(void)
 {
 	wifi_connect();
 	wait();
@@ -234,43 +237,67 @@ void ESP_CONNECT(void)
 	UsartPrintf(USART_DEBUG,"1. RST\r\n");
 	while(ESP8266_SendCmd("AT+RST\r\n", ""))
 		delay_ms(500);
-	while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", ""))
+	while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", ""))		//关闭TCP/UDP/SSL传输
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"2. CWMODE\r\n");
-	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))		//设置WiFi模式为sta模式，也就是扫描wifi，AP则是广播
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"3. CONNECT WIFI\r\n");
-	while(ESP8266_SendCmd(ESP8266_WIFI_INFO, "GOT IP"))
+	while(ESP8266_SendCmd(ESP8266_WIFI_INFO1, "GOT IP"))		//连接wifi
 		delay_ms(500);
 	LED0=0;
 	OLED_Clear();
 	wifi_connect_success();
 	get_data();
+	func_index=0;
+}
+void ESP_CONNECT2(void)
+{
+	wifi_connect();
+	wait();
+	UsartPrintf(USART_DEBUG,"0. AT\r\n");
+	while(ESP8266_SendCmd("AT\r\n", "OK"))
+		delay_ms(500);
 	
+	UsartPrintf(USART_DEBUG,"1. RST\r\n");
+	while(ESP8266_SendCmd("AT+RST\r\n", ""))
+		delay_ms(500);
+	while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", ""))		//关闭TCP/UDP/SSL传输
+		delay_ms(500);
+	
+	UsartPrintf(USART_DEBUG,"2. CWMODE\r\n");
+	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))		//设置WiFi模式为sta模式，也就是扫描wifi，AP则是广播
+		delay_ms(500);
+	
+	UsartPrintf(USART_DEBUG,"3. CONNECT WIFI\r\n");
+	while(ESP8266_SendCmd(ESP8266_WIFI_INFO2, "GOT IP"))		//连接wifi
+		delay_ms(500);
+	LED0=0;
+	OLED_Clear();
+	wifi_connect_success();
+	get_data();
+	func_index=0;
 }
 void ESP_TIME_LINK()
 {
 	if(j!=0)
 	{
-		UsartPrintf(USART_DEBUG,"11. CIPCLOSE\r\n");
-		while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", "OK"))
-			delay_ms(500);
 		UsartPrintf(USART_DEBUG,"12. CWMODE\r\n");
-		while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))
+		while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))	//设置WiFi模式为sta模式，也就是扫描wifi，AP则是广播
 			delay_ms(500);
 	}
 	UsartPrintf(USART_DEBUG,"4. TCP time connect\r\n");
-	while(ESP8266_SendCmd("AT+CIPSTART=\"TCP\",\"api.k780.com\",80\r\n", "CONNECT"))
+	while(ESP8266_SendCmd("AT+CIPSTART=\"TCP\",\"api.k780.com\",80\r\n", "CONNECT"))	//建立TCP连接
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"5. CIPMODE\r\n");
-	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))	//开启透传模式
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"6. CIPSEND\r\n");
-	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))		//发送数据
 		delay_ms(500);
 	j++;
 }
@@ -278,32 +305,32 @@ void ESP_TIME_LINK()
 void ESP_WEATHER1_LINK()
 {
 	UsartPrintf(USART_DEBUG,"7. CIPCLOSE\r\n");
-	while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPCLOSE\r\n", "OK"))		//关闭TCP/UDP/SSL传输
 		delay_ms(500);
 	UsartPrintf(USART_DEBUG,"7. CWMODE\r\n");
-	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))		//设置WiFi模式为sta模式，也就是扫描wifi，AP则是广播
 		delay_ms(500);
 	UsartPrintf(USART_DEBUG,"8. TCP weather connect\r\n");
-	while(ESP8266_SendCmd("AT+CIPSTART=\"TCP\",\"api.seniverse.com\",80\r\n", "CONNECT"))
+	while(ESP8266_SendCmd("AT+CIPSTART=\"TCP\",\"api.seniverse.com\",80\r\n", "CONNECT"))		//建立TCP连接
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"9. CIPMODE\r\n");
-	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))		//开启透传模式
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"10. CIPSEND\r\n");
-	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))		//发送数据
 		delay_ms(500);
 }
 
 void ESP_WEATHER2_LINK()
 {
 	UsartPrintf(USART_DEBUG,"9. CIPMODE\r\n");
-	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPMODE=1\r\n", "OK"))		//开启透传模式
 		delay_ms(500);
 	
 	UsartPrintf(USART_DEBUG,"10. CIPSEND\r\n");
-	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))
+	while(ESP8266_SendCmd("AT+CIPSEND\r\n", "OK"))	//发送数据
 		delay_ms(500);
 }
 

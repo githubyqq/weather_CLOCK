@@ -23,6 +23,10 @@ void weather();
 void time();
 void tip();
 void information();
+void WIFI_choice1();
+void WIFI_choice2();
+void wifi_connect1();
+void wifi_connect2();
 void  Menu_key_set(void);
  
 void choice_I();

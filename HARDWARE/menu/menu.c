@@ -35,20 +35,25 @@ Menu_table  table[30]=
 		
 		{10,10,10,5,(*weather_I)},		//四级界面：天气显示 九江
 		{11,11,11,9,(*weather_II)},		//四级界面：天气显示 长沙
-
+		
+		{12,13,14,12,(*WIFI_choice1)},	//wifi选择界面1
+		{13,12,15,13,(*WIFI_choice2)},	//wifi选择界面2
+		
+		{14,14,14,14,(*wifi_connect1)},
+		{15,15,15,15,(*wifi_connect2)},
 };
  
-uint8_t  func_index = 0;	//主程序此时所在程序的索引值
+uint8_t  func_index = 12;	//主程序此时所在程序的索引值
  
 void  Menu_key_set(void)
 {
-  if((KEY_Scan(1) == 1))  //B0按下==next
+  if((KEY_Scan(1) == 2))  //B0按下==next
   { 
     func_index=table[func_index].next;	//按键next按下后的索引号
     OLED_Clear(); 
   }
 	
-  if((KEY_Scan(1) == 2))	//B1按下==enter
+  if((KEY_Scan(1) == 1))	//B1按下==enter
   {
     func_index=table[func_index].enter;	//按键enter按下后的索引号
     OLED_Clear();
@@ -89,8 +94,41 @@ void information()
 {
 	search_information();
 }
- 
- 
+ //WIFI选择界面1
+void WIFI_choice1()
+{
+	wifi_choice1();
+}
+  //WIFI选择界面2
+void WIFI_choice2()
+{
+	wifi_choice2();
+}
+
+//加载界面1
+void wifi_connect1()
+{
+	ESP_CONNECT1();
+	ESP_TIME_LINK();
+	ESP_GET_TIME();
+	ESP_WEATHER1_LINK();
+	ESP_GET_WEATHER_1();
+	ESP_WEATHER2_LINK();
+	ESP_GET_WEATHER_2();
+		OLED_Clear();
+}
+//加载界面2
+void wifi_connect2()
+{
+	ESP_CONNECT2();
+	ESP_TIME_LINK();
+	ESP_GET_TIME();
+	ESP_WEATHER1_LINK();
+	ESP_GET_WEATHER_1();
+	ESP_WEATHER2_LINK();
+	ESP_GET_WEATHER_2();
+		OLED_Clear();
+}	
 
 
 //三级城市选择	九江

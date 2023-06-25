@@ -710,7 +710,7 @@ void week_judge()
 							break;
 		case 6:		OLED_ShowCHinese(72,5,79);
 							break;
-		case 7:		OLED_ShowCHinese(72,5,80);
+		case 0:		OLED_ShowCHinese(72,5,80);
 							break;
 		default:
 							break;
@@ -794,12 +794,11 @@ void display_time(void)
 //三级提示
 void display_tip()
 {
-	OLED_ShowCHinese(16,0,33);
-	OLED_ShowCHinese(32,0,34);
-	OLED_ShowCHinese(48,0,35);
-	OLED_ShowCHinese(64,0,36);
-	OLED_ShowCHinese(80,0,37);
-	OLED_ShowCHinese(96,0,38);
+	
+	OLED_ShowCHinese(32,0,35);
+	OLED_ShowCHinese(48,0,36);
+	OLED_ShowCHinese(64,0,37);
+	OLED_ShowCHinese(80,0,38);
 	
 	OLED_ShowCHinese(16,2,39);
 	OLED_ShowCHinese(32,2,40);
@@ -811,8 +810,8 @@ void display_tip()
 	OLED_ShowString(0,6,"--",16);
 	OLED_ShowCHinese(16,6,45);
 	OLED_ShowCHinese(32,6,46);
-	OLED_ShowCHinese(48,6,47);
-	OLED_ShowCHinese(64,6,48);
+	OLED_ShowCHinese(48,6,6);
+	OLED_ShowCHinese(64,6,7);
 	OLED_ShowCHinese(80,6,49);
 	OLED_ShowCHinese(96,6,50);
 	OLED_ShowCHinese(112,6,51);
@@ -839,4 +838,24 @@ void display_information()
 	OLED_ShowString(40,6,"yqq0833",16);
 }
 	
+void wifi_choice1()
+{
+	OLED_ShowCHinese(23,0,93);		//请
+	OLED_ShowCHinese(39,0,94);		//选
+	OLED_ShowCHinese(55,0,95);		//择
+	OLED_ShowString(71,0,"WIFI",16);
+	OLED_ShowString(0,2,"perfect",16);
+	OLED_ShowString(0,4,"CMCC-301",16);
+	OLED_DrawBMP(70,2,86,4,BMP37);
+}
+void wifi_choice2()
+{
+	OLED_ShowCHinese(23,0,93);		//请
+	OLED_ShowCHinese(39,0,94);		//选
+	OLED_ShowCHinese(55,0,95);		//择
+	OLED_ShowString(71,0,"WIFI",16);
+	OLED_ShowString(0,2,"perfect",16);
+	OLED_ShowString(0,4,"CMCC-301",16);
+	OLED_DrawBMP(70,4,86,6,BMP37);
+}
 

@@ -21,12 +21,18 @@ Target DLL:      CMSIS_AGDI.dll V1.21.0.0
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-D:\Desktop\STUDY\STM32工程汇总\时钟\USER\LED.uvprojx
-Project File Date:  05/29/2023
+D:\Desktop\STM32合集\时钟\USER\LED.uvprojx
+Project File Date:  06/09/2023
 
 <h2>Output:</h2>
 Build target 'LED'
-compiling oled.c...
+compiling esp8266.c...
+..\HARDWARE\esp8266\esp8266.h(15): warning:  #1295-D: Deprecated declaration ESP_WEATHER1_LINK - give arg types
+  void ESP_WEATHER1_LINK();     //九江天气获取前
+..\HARDWARE\esp8266\esp8266.h(16): warning:  #1295-D: Deprecated declaration ESP_WEATHER2_LINK - give arg types
+  void ESP_WEATHER2_LINK();     //温州天气获取前
+..\HARDWARE\esp8266\esp8266.h(17): warning:  #1295-D: Deprecated declaration ESP_TIME_LINK - give arg types
+  void ESP_TIME_LINK();                 //时间获取前
 ..\HARDWARE\OLED\OLED\oled.h(45): warning:  #1295-D: Deprecated declaration Picture - give arg types
   void Picture();
 ..\HARDWARE\OLED\OLED\oled.h(46): warning:  #1295-D: Deprecated declaration IIC_Start - give arg types
@@ -71,14 +77,114 @@ compiling oled.c...
   void weather1_judge();
 ..\HARDWARE\OLED\OLED\oled.h(72): warning:  #1295-D: Deprecated declaration weather2_judge - give arg types
   void weather2_judge();
-..\HARDWARE\OLED\OLED\oled.c: 22 warnings, 0 errors
+..\HARDWARE\OLED\OLED\oled.h(73): warning:  #1295-D: Deprecated declaration wifi_choice1 - give arg types
+  void wifi_choice1();
+..\HARDWARE\OLED\OLED\oled.h(74): warning:  #1295-D: Deprecated declaration wifi_choice2 - give arg types
+  void wifi_choice2();
+..\HARDWARE\esp8266\esp8266.c(340): warning:  #177-D: variable "i" was declared but never referenced
+        int i,j;
+..\HARDWARE\esp8266\esp8266.c(340): warning:  #177-D: variable "j" was declared but never referenced
+        int i,j;
+..\HARDWARE\esp8266\esp8266.c: 29 warnings, 0 errors
+compiling menu.c...
+..\HARDWARE\menu\menu.h(21): warning:  #1295-D: Deprecated declaration home - give arg types
+  void home();
+..\HARDWARE\menu\menu.h(22): warning:  #1295-D: Deprecated declaration weather - give arg types
+  void weather();
+..\HARDWARE\menu\menu.h(23): warning:  #1295-D: Deprecated declaration time - give arg types
+  void time();
+..\HARDWARE\menu\menu.h(24): warning:  #1295-D: Deprecated declaration tip - give arg types
+  void tip();
+..\HARDWARE\menu\menu.h(25): warning:  #1295-D: Deprecated declaration information - give arg types
+  void information();
+..\HARDWARE\menu\menu.h(26): warning:  #1295-D: Deprecated declaration WIFI_choice1 - give arg types
+  void WIFI_choice1();
+..\HARDWARE\menu\menu.h(27): warning:  #1295-D: Deprecated declaration WIFI_choice2 - give arg types
+  void WIFI_choice2();
+..\HARDWARE\menu\menu.h(28): warning:  #1295-D: Deprecated declaration wifi_connect1 - give arg types
+  void wifi_connect1();
+..\HARDWARE\menu\menu.h(29): warning:  #1295-D: Deprecated declaration wifi_connect2 - give arg types
+  void wifi_connect2();
+..\HARDWARE\menu\menu.h(32): warning:  #1295-D: Deprecated declaration choice_I - give arg types
+  void choice_I();
+..\HARDWARE\menu\menu.h(33): warning:  #1295-D: Deprecated declaration choice_II - give arg types
+  void choice_II();
+..\HARDWARE\menu\menu.h(34): warning:  #1295-D: Deprecated declaration time_I - give arg types
+  void time_I();
+..\HARDWARE\menu\menu.h(35): warning:  #1295-D: Deprecated declaration tip_I - give arg types
+  void tip_I();
+..\HARDWARE\menu\menu.h(36): warning:  #1295-D: Deprecated declaration information_I - give arg types
+  void information_I();
+..\HARDWARE\menu\menu.h(37): warning:  #1295-D: Deprecated declaration weather_I - give arg types
+  void weather_I();
+..\HARDWARE\menu\menu.h(38): warning:  #1295-D: Deprecated declaration weather_II - give arg types
+  void weather_II();
+..\HARDWARE\menu\menu.h(41): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\OLED\OLED\oled.h(45): warning:  #1295-D: Deprecated declaration Picture - give arg types
+  void Picture();
+..\HARDWARE\OLED\OLED\oled.h(46): warning:  #1295-D: Deprecated declaration IIC_Start - give arg types
+  void IIC_Start();
+..\HARDWARE\OLED\OLED\oled.h(47): warning:  #1295-D: Deprecated declaration IIC_Stop - give arg types
+  void IIC_Stop();
+..\HARDWARE\OLED\OLED\oled.h(51): warning:  #1295-D: Deprecated declaration base_jiemian - give arg types
+  void base_jiemian();
+..\HARDWARE\OLED\OLED\oled.h(52): warning:  #1295-D: Deprecated declaration wifi_connect - give arg types
+  void wifi_connect();
+..\HARDWARE\OLED\OLED\oled.h(53): warning:  #1295-D: Deprecated declaration wifi_connect_success - give arg types
+  void wifi_connect_success();
+..\HARDWARE\OLED\OLED\oled.h(54): warning:  #1295-D: Deprecated declaration wait - give arg types
+  void wait();
+..\HARDWARE\OLED\OLED\oled.h(55): warning:  #1295-D: Deprecated declaration get_data - give arg types
+  void get_data();
+..\HARDWARE\OLED\OLED\oled.h(59): warning:  #1295-D: Deprecated declaration show_temp1 - give arg types
+  void show_temp1();
+..\HARDWARE\OLED\OLED\oled.h(60): warning:  #1295-D: Deprecated declaration show_temp2 - give arg types
+  void show_temp2();
+..\HARDWARE\OLED\OLED\oled.h(61): warning:  #1295-D: Deprecated declaration display_tip - give arg types
+  void display_tip();
+..\HARDWARE\OLED\OLED\oled.h(62): warning:  #1295-D: Deprecated declaration IIC_Wait_Ack - give arg types
+  void IIC_Wait_Ack();
+..\HARDWARE\OLED\OLED\oled.h(63): warning:  #1295-D: Deprecated declaration search_information - give arg types
+  void search_information();
+..\HARDWARE\OLED\OLED\oled.h(64): warning:  #1295-D: Deprecated declaration search_weather - give arg types
+  void search_weather();
+..\HARDWARE\OLED\OLED\oled.h(65): warning:  #1295-D: Deprecated declaration search_time - give arg types
+  void search_time();
+..\HARDWARE\OLED\OLED\oled.h(66): warning:  #1295-D: Deprecated declaration search_tip - give arg types
+  void search_tip();
+..\HARDWARE\OLED\OLED\oled.h(67): warning:  #1295-D: Deprecated declaration display_information - give arg types
+  void display_information();
+..\HARDWARE\OLED\OLED\oled.h(68): warning:  #1295-D: Deprecated declaration week_judge - give arg types
+  void week_judge();
+..\HARDWARE\OLED\OLED\oled.h(69): warning:  #1295-D: Deprecated declaration choice_city_1 - give arg types
+  void choice_city_1();
+..\HARDWARE\OLED\OLED\oled.h(70): warning:  #1295-D: Deprecated declaration choice_city_2 - give arg types
+  void choice_city_2();
+..\HARDWARE\OLED\OLED\oled.h(71): warning:  #1295-D: Deprecated declaration weather1_judge - give arg types
+  void weather1_judge();
+..\HARDWARE\OLED\OLED\oled.h(72): warning:  #1295-D: Deprecated declaration weather2_judge - give arg types
+  void weather2_judge();
+..\HARDWARE\OLED\OLED\oled.h(73): warning:  #1295-D: Deprecated declaration wifi_choice1 - give arg types
+  void wifi_choice1();
+..\HARDWARE\OLED\OLED\oled.h(74): warning:  #1295-D: Deprecated declaration wifi_choice2 - give arg types
+  void wifi_choice2();
+..\HARDWARE\esp8266\esp8266.h(15): warning:  #1295-D: Deprecated declaration ESP_WEATHER1_LINK - give arg types
+  void ESP_WEATHER1_LINK();     //九江天气获取前
+..\HARDWARE\esp8266\esp8266.h(16): warning:  #1295-D: Deprecated declaration ESP_WEATHER2_LINK - give arg types
+  void ESP_WEATHER2_LINK();     //温州天气获取前
+..\HARDWARE\esp8266\esp8266.h(17): warning:  #1295-D: Deprecated declaration ESP_TIME_LINK - give arg types
+  void ESP_TIME_LINK();                 //时间获取前
+..\HARDWARE\menu\menu.c(188): warning:  #1-D: last line of file ends without a newline
+  //}
+..\HARDWARE\menu\menu.c: 45 warnings, 0 errors
 linking...
-Program Size: Code=19436 RO-data=3264 RW-data=6872 ZI-data=2168  
+Program Size: Code=17192 RO-data=2884 RW-data=7080 ZI-data=2072  
 FromELF: creating hex file...
-"..\OBJ\LED.axf" - 0 Error(s), 22 Warning(s).
+"..\OBJ\LED.axf" - 0 Error(s), 74 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  D:\Desktop\STUDY\STM32工程汇总\时钟\USER\RTE
+  D:\Desktop\STM32合集\时钟\USER\RTE
   D:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0
 
 <h2>Collection of Component Files used:</h2>

@@ -70,6 +70,8 @@ void choice_city_1();
 void choice_city_2();
 void weather1_judge();
 void weather2_judge();
+void wifi_choice1();
+void wifi_choice2();
 #endif  
 	 
 
